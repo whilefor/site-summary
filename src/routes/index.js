@@ -19,7 +19,6 @@ router.post('/posts', async (ctx, next) => {
 	try {
 		posts = await getPostList(config)
 	} catch(error){
-		console.log(error);
 		ctx.body = { error: error };
 		return;
 	}
