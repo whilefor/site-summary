@@ -1,0 +1,30 @@
+{
+  "name": "auto-post",
+  "version": "1.0.0",
+  "description": "TODO",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whilefor/auto-post.git"
+  },
+  "author": "whilefor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whilefor/auto-post/issues"
+  },
+  "homepage": "https://github.com/whilefor/auto-post#readme",
+  "devDependencies": {
+    "rollup": "^0.41.6"
+  },
+  "dependencies": {
+    "chrome-remote-interface": "^0.22.0",
+    "jsdom": "^11.0.0",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.1.1",
+    "lodash": "^4.17.4"
+  }
+}
