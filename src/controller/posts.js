@@ -1,5 +1,8 @@
 const __post__cache__ = {};
 const defaultConfig = {
+	// 网站备注名称
+	name: '',
+
 	// 网站的URL
 	url: '',
 
@@ -36,12 +39,13 @@ function getPostList(config) {
 	return new Promise(async (resolve, reject)=>{
 		config = _.extend(defaultConfig, config);
 		
-		// if(__post__cache__[config.url]){
-		// 	resolve(__post__cache__[config.url]);
-		// 	return;
-		// }
+		if(__post__cache__[config.url]){
+			resolve(__post__cache__[config.url]);
+			return;
+		}
 
 		let { url,
+			name,
 			limit,
 			title_selector, 
 			desc_selector,
@@ -100,13 +104,17 @@ function getPostList(config) {
 		    await client.close();
 
 		} catch(error){
+			console.log('getPostList: ', error);
 			reject(error);
 		}
 
-		resolve({
+		let item = {
 			url: url,
+			name: name,
 			posts: posts
-		});
+		};
+		__post__cache__[config.url] = item;
+		resolve(item);
 	})
 }
 

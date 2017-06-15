@@ -1,0 +1,7 @@
+[{
+	"name": "web前端 - 伯乐在线",
+	"url": "http://web.jobbole.com/all-posts/",
+	"title_selector": ".archive-title",
+	"desc_selector": ".post-meta .excerpt p",
+	"link_selector": ".archive-title"
+}]

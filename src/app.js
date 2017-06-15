@@ -6,7 +6,7 @@
 
 const Koa = require('koa');
 const app = module.exports = new Koa();
-
+const cors = require('kcors');
 // app.use(require('koa-response-time')());
 // app.use(require('koa-favicon')(require.resolve('./public/favicon.ico')));
 // app.use(require('koa-conditional-get')());
@@ -26,7 +26,8 @@ app.use(require('koa-bodyparser')({
     // BodyParser options here
 }));
 
-
+app.use(require('koa-static')(__dirname + '/public/vue/dist'));
+app.use(cors());
 
 // const mount = require('koa-mount');
 // app.use(mount('/public', require('koa-static')('public')));

@@ -1,7 +1,7 @@
 const Router = require('koa-router');
 const router = new Router();
 const getPostList = require('../controller/posts.js').getPostList;
-
+const config = require('../config.json');
 // /Applications/Google\ Chrome\ dev.app/Contents/MacOS/Google\ Chrome --headless --remote-debugging-port=9222 https://baidu.com --disable-gpu
 // /Applications/Google\ Chrome\ beta.app/Contents/MacOS/Google\ Chrome --headless --remote-debugging-port=9222 https://baidu.com --disable-gpu
 
@@ -12,20 +12,27 @@ const getPostList = require('../controller/posts.js').getPostList;
 
 // get posts info through the config 
 router.post('/posts', async (ctx, next) => {
-	let config = ctx.request.body;
-	console.log(config);
+	let url = ctx.request.body.url;
+	let site = config.find((site)=>{return site.url == url});
+	if(!site){
+		ctx.body = {
+			posts: []
+		}
+		return;
+	}
 
-	let posts;
 	try {
-		posts = await getPostList(config)
+		posts = await getPostList(site);
 	} catch(error){
 		ctx.body = { error: error };
 		return;
 	}
 
-	ctx.body = {
-		posts: posts
-	}
+	ctx.body = posts;
+})
+
+router.get('/config', async (ctx, next) => {
+	ctx.body = config
 })
 
 module.exports = router

@@ -23,9 +23,11 @@
   "dependencies": {
     "chrome-remote-interface": "^0.22.0",
     "jsdom": "^11.0.0",
+    "kcors": "^2.2.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.1.1",
+    "koa-static": "^3.0.0",
     "lodash": "^4.17.4"
   }
 }
