@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const router = new Router();
-const getPostList = require('../controller/posts.js').getPostList;
+const getPostList = require('../controller/site.js').getPostList;
 const config = require('../config.json');
 // /Applications/Google\ Chrome\ dev.app/Contents/MacOS/Google\ Chrome --headless --remote-debugging-port=9222 https://baidu.com --disable-gpu
 // /Applications/Google\ Chrome\ beta.app/Contents/MacOS/Google\ Chrome --headless --remote-debugging-port=9222 https://baidu.com --disable-gpu

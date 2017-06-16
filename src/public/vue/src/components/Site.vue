@@ -1,13 +1,14 @@
 <template>
     <div class="site">
-        <div v-if="posts.length > 0">
+        <a href="#" @click="refresh">refresh</a>
+        <div v-if="datas.length > 0">
             <h2>
                 <a v-bind:href="url" target="_blank">{{ name }}</a>
             </h2>
             <ul>
-                <li v-for="post in posts">
-                    <a v-bind:href="post.link" target="_blank">{{ post.title}}</a>
-                    <p>{{ post.desc }}</p>
+                <li v-for="data in datas">
+                    <a v-bind:href="data.link" target="_blank">{{ data.title}}</a>
+                    <p>{{ data.desc }}</p>
                 </li>
             </ul>
         </div>
@@ -21,25 +22,37 @@ import axios from '../libs/axios';
 export default {
     name: 'site',
     props: ['data'],
-    mounted (){
-        axios.post('/posts',{
-            url: this.data.url
-        })
-        .then( (response)=>{
-            let data   = response.data;
-            this.name  = data.name;
-            this.url   = data.url;
-            this.posts = data.posts;
-        })
-        .catch( (error)=>{
-            console.log(error);
-        });
+    created (){
+        this.fetch();
+    },
+    methods: {
+        refresh: function (){
+            !this.loading && this.fetch();
+        },
+        fetch: function (){
+            this.loading = true;
+            axios.post('/posts',{
+                url: this.data.url
+            })
+            .then( (response)=>{
+                this.loading = false;
+                let data   = response.data;
+                this.name  = data.name;
+                this.url   = data.url;
+                this.datas = data.datas;
+            })
+            .catch( (error)=>{
+                this.loading = false;
+                console.log(error);
+            });
+        }
     },
     data (){
         return {
+            loading: true,
             name: this.data.name,
             url:  this.data.url,
-            posts: []
+            datas: []
         }
     }
 }
@@ -58,6 +71,12 @@ export default {
     ul {
         font-size: 15px;
         padding: 0px;
+        li p{
+            font-size: 13px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
 }
 </style>

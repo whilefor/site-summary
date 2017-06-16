@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        header: auto post category 
+        header: category 
         <router-view></router-view>
     </div>
 </template>

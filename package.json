@@ -1,5 +1,5 @@
 {
-  "name": "auto-post",
+  "name": "selector",
   "version": "1.0.0",
   "description": "TODO",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/whilefor/auto-post.git"
+    "url": "git+https://github.com/whilefor/selector.git"
   },
   "author": "whilefor",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/whilefor/auto-post/issues"
+    "url": "https://github.com/whilefor/selector/issues"
   },
-  "homepage": "https://github.com/whilefor/auto-post#readme",
+  "homepage": "https://github.com/whilefor/selector#readme",
   "devDependencies": {
     "rollup": "^0.41.6"
   },

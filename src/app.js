@@ -27,6 +27,7 @@ app.use(require('koa-bodyparser')({
 }));
 
 app.use(require('koa-static')(__dirname + '/public/vue/dist'));
+// app.use(require('koa-static')(__dirname + '/public/react/dist'));
 app.use(cors());
 
 // const mount = require('koa-mount');

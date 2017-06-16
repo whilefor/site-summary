@@ -1,7 +1,21 @@
 [{
 	"name": "web前端 - 伯乐在线",
 	"url": "http://web.jobbole.com/all-posts/",
-	"title_selector": ".archive-title",
-	"desc_selector": ".post-meta .excerpt p",
-	"link_selector": ".archive-title"
+	"sectionSelector": ".post",
+	"data": {
+		"title": {
+			"selector": ".archive-title"
+		},
+		"desc": {
+			"selector": ".post-meta .excerpt p"
+		},
+		"link": {
+			"selector": ".archive-title",
+			"attribute": "href"
+		},
+		"date": {
+			"selector": ".post-meta > p",
+			"childNodes": 3
+		}
+	}
 }]

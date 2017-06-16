@@ -5,7 +5,12 @@
 				<Site :data="site" />
     		</div>
     	</div>
-    	<div v-else> loading </div>
+    	<div v-else-if="error">
+    		{{error}}
+    	</div>
+    	<div v-else>
+			loading
+		</div>
     </div>
 </template>
 
@@ -15,18 +20,25 @@ import axios from '../libs/axios';
 
 export default {
 	name: 'main',
-	mounted (){
-		axios.get('/config')
-		.then( (response)=>{
-			this.sites = response.data;
-		})
-		.catch( (error)=>{
-			console.log(error);
-		});
+	created (){
+		this.fetch();
 	},
+    methods: {
+        fetch: function (){
+			axios.get('/config')
+			.then( (response)=>{
+				this.sites = response.data;
+			})
+			.catch( (error)=>{
+				this.error = error.response.data;
+				console.log(error);
+			});
+        }
+    },
 	data (){
 		return {
 			sites: [],
+			error: ''
 		}
 	},
 	components: {
