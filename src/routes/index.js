@@ -1,7 +1,9 @@
 const Router = require('koa-router');
 const router = new Router();
-const getPostList = require('../controller/site.js').getPostList;
+const htmlSelector = require('html-selector');
 const config = require('../config.json');
+const __cache__ = {};
+
 // /Applications/Google\ Chrome\ dev.app/Contents/MacOS/Google\ Chrome --headless --remote-debugging-port=9222 https://baidu.com --disable-gpu
 // /Applications/Google\ Chrome\ beta.app/Contents/MacOS/Google\ Chrome --headless --remote-debugging-port=9222 https://baidu.com --disable-gpu
 
@@ -9,26 +11,31 @@ const config = require('../config.json');
 // const _config = ctx.request.body
 // const _config = ctx.params;
 
-
-// get posts info through the config 
-router.post('/posts', async (ctx, next) => {
+router.post('/site', async (ctx, next) => {
 	let url = ctx.request.body.url;
 	let site = config.find((site)=>{return site.url == url});
+	let data;
 	if(!site){
-		ctx.body = {
-			posts: []
-		}
+		ctx.body = {};
+		return;
+	}
+
+	if(__cache__[url]){
+		ctx.body = __cache__[url];
 		return;
 	}
 
 	try {
-		posts = await getPostList(site);
+		console.log('site', site);
+		data = await htmlSelector(site);
+		__cache__[url] = data;
 	} catch(error){
-		ctx.body = { error: error };
+		console.log('error: ', error.toString());
+		ctx.body = { error: error.toString()};
 		return;
 	}
 
-	ctx.body = posts;
+	ctx.body = data;
 })
 
 router.get('/config', async (ctx, next) => {

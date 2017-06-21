@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        header: category 
+    	<h1>Site Summary</h1>
         <router-view></router-view>
     </div>
 </template>

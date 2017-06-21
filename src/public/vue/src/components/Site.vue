@@ -1,18 +1,20 @@
 <template>
     <div class="site">
         <a href="#" @click="refresh">refresh</a>
-        <div v-if="datas.length > 0">
+        <div v-if="items.length > 0">
             <h2>
                 <a v-bind:href="url" target="_blank">{{ name }}</a>
             </h2>
             <ul>
-                <li v-for="data in datas">
-                    <a v-bind:href="data.link" target="_blank">{{ data.title}}</a>
-                    <p>{{ data.desc }}</p>
+                <li v-for="item in items">
+                    <a v-bind:href="item.link" target="_blank">{{ item.title}}</a>
+                    <p>{{ item.desc }}</p>
                 </li>
             </ul>
         </div>
-        <div v-else>loading</div>
+
+        <div v-if="loading">loading</div>
+        <div v-if="error">{{ error }}</div>
     </div>
 </template>
 
@@ -31,15 +33,20 @@ export default {
         },
         fetch: function (){
             this.loading = true;
-            axios.post('/posts',{
+            axios.post('/site',{
                 url: this.data.url
             })
             .then( (response)=>{
                 this.loading = false;
+                if(response.data.error){
+                    this.error = response.data.error;
+                    return;
+                }
+
                 let data   = response.data;
                 this.name  = data.name;
                 this.url   = data.url;
-                this.datas = data.datas;
+                this.items = data.data;
             })
             .catch( (error)=>{
                 this.loading = false;
@@ -50,9 +57,10 @@ export default {
     data (){
         return {
             loading: true,
-            name: this.data.name,
-            url:  this.data.url,
-            datas: []
+            error: '',
+            name: '',
+            url:  '',
+            items: []
         }
     }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "selector",
+  "name": "site-summary",
   "version": "1.0.0",
-  "description": "TODO",
+  "description": "Site Summary",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,19 +9,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/whilefor/selector.git"
+    "url": "git+https://github.com/whilefor/site-summary.git"
   },
   "author": "whilefor",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/whilefor/selector/issues"
+    "url": "https://github.com/whilefor/site-summary/issues"
   },
-  "homepage": "https://github.com/whilefor/selector#readme",
+  "homepage": "https://github.com/whilefor/site-summary#readme",
   "devDependencies": {
     "rollup": "^0.41.6"
   },
   "dependencies": {
     "chrome-remote-interface": "^0.22.0",
+    "html-selector": "^0.0.6",
     "jsdom": "^11.0.0",
     "kcors": "^2.2.1",
     "koa": "^2.2.0",
