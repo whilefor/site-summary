@@ -1,8 +1,10 @@
-const Router = require('koa-router');
-const router = new Router();
+const Router       = require('koa-router');
+const router       = new Router();
 const htmlSelector = require('html-selector');
-const config = require('../config.json');
-const __cache__ = {};
+const config       = require('../config.json');
+const __cache__    = {};
+const cache        = require('memory-cache');
+const cacheTimeout = 360000;
 
 // /Applications/Google\ Chrome\ dev.app/Contents/MacOS/Google\ Chrome --headless --remote-debugging-port=9222 https://baidu.com --disable-gpu
 // /Applications/Google\ Chrome\ beta.app/Contents/MacOS/Google\ Chrome --headless --remote-debugging-port=9222 https://baidu.com --disable-gpu
@@ -20,15 +22,14 @@ router.post('/site', async (ctx, next) => {
 		return;
 	}
 
-	if(__cache__[url]){
-		ctx.body = __cache__[url];
+	if(cache.get(url)){
+		ctx.body = cache.get(url);
 		return;
 	}
 
 	try {
-		console.log('site', site);
 		data = await htmlSelector(site);
-		__cache__[url] = data;
+		cache.put(url, data, cacheTimeout);
 	} catch(error){
 		console.log('error: ', error.toString());
 		ctx.body = { error: error.toString()};

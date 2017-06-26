@@ -2,6 +2,7 @@
 	"name": "web前端 - 伯乐在线",
 	"url": "http://web.jobbole.com/all-posts/",
 	"rootSelector": ".post",
+	"limit": 4,
 	"data": {
 		"title": {
 			"selector": ".archive-title"
