@@ -1,9 +1,7 @@
 <template>
-    <div id="main">
-    	<div v-if="sites.length > 0">
-    		<div v-for="site in sites">
-				<Site :data="site" />
-    		</div>
+    <div id="content-main">
+    	<div class="site-wraper" v-if="sites.length > 0">
+			<Site v-for="site in sites" :data="site" :key="site.url" />
     	</div>
     	<div v-else-if="error">
     		{{error}}
@@ -51,4 +49,8 @@ export default {
 ul, li{
 	list-style: none;
 }
+.site-wraper{
+
+}
+
 </style>

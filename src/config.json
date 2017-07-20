@@ -19,4 +19,25 @@
 			"childNodes": 3
 		}
 	}
+},{
+	"name": "web前端 - 伯乐在线2",
+	"url": "http://web.jobbole.com/all-posts",
+	"rootSelector": ".post",
+	"limit": 4,
+	"data": {
+		"title": {
+			"selector": ".archive-title"
+		},
+		"desc": {
+			"selector": ".post-meta .excerpt p"
+		},
+		"link": {
+			"selector": ".archive-title",
+			"attribute": "href"
+		},
+		"date": {
+			"selector": ".post-meta > p",
+			"childNodes": 3
+		}
+	}
 }]
