@@ -40,7 +40,8 @@ router.post('/site', async (ctx, next) => {
 })
 
 router.get('/config', async (ctx, next) => {
-	ctx.body = config
+	console.log('/config');
+	ctx.body = config;
 })
 
 module.exports = router

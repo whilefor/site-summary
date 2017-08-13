@@ -1,11 +1,14 @@
 <template>
-    <div class="site">
-        <a href="#" @click="refresh">refresh</a>
+    <div class="site-list-items">
+        <p class="site-list-items-actions" >
+            <a href="#" @click="toggle">toggle</a>
+            <a href="#" @click="refresh">refresh</a>
+        </p>
         <div v-if="items.length > 0">
             <h2>
                 <a v-bind:href="url" target="_blank">{{ name }}</a>
             </h2>
-            <ul>
+            <ul v-if="!isHideItems">
                 <li v-for="item in items">
                     <a v-bind:href="item.link" target="_blank">{{ item.title}}</a>
                     <p>{{ item.desc }}</p>
@@ -30,6 +33,9 @@ export default {
     methods: {
         refresh: function (){
             !this.loading && this.fetch();
+        },
+        toggle: function (){
+            this.isHideItems = !this.isHideItems;
         },
         fetch: function (){
             this.loading = true;
@@ -60,7 +66,8 @@ export default {
             error: '',
             name: '',
             url:  '',
-            items: []
+            items: [],
+            isHideItems: false
         }
     }
 }
@@ -68,22 +75,42 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-.site{
-    width: 400px;
-    padding: 10px;
-    border: 1px solid #aaa;
-    h2 {
-        font-size: 15px;
-        text-align: center;
+.site-list-items{
+    position: relative;
+    border-top: 1px solid #eceef1;
+    min-height: 70px;
+    .site-list-items-actions{
+        position: absolute;
+        top:28px;
+        right:20px;
     }
-    ul {
-        font-size: 15px;
-        padding: 0px;
-        li p{
-            font-size: 13px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+    .site-list-items-actions:hover{ text-decoration: none;}
+    a{ text-decoration: none; color: #121821; }
+    a:hover{ text-decoration: underline; }
+    ul{ margin: 0; padding: 0; } 
+    h2{
+        padding: 23px 20px;
+        margin: 0;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 27px;
+    }
+
+    ul li{
+        padding: 20px;
+        padding-left: 40px;
+        border-top: 1px solid #eceef1;
+        line-height: 1;
+
+        a{
+            line-height: 21px;
+            font-weight: 600;
+        }
+        p{
+            font-size: 11px;
+            line-height: 18px;
+            color: #3e4551;
+            margin-top: 2px;
         }
     }
 }

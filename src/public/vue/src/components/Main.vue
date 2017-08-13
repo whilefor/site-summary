@@ -1,6 +1,6 @@
 <template>
     <div id="content-main">
-    	<div class="site-wraper" v-if="sites.length > 0">
+    	<div class="site-list" v-if="sites.length > 0">
 			<Site v-for="site in sites" :data="site" :key="site.url" />
     	</div>
     	<div v-else-if="error">
@@ -28,8 +28,8 @@ export default {
 				this.sites = response.data;
 			})
 			.catch( (error)=>{
-				this.error = error.response.data;
 				console.log(error);
+				this.error = error.response.data;
 			});
         }
     },
@@ -49,8 +49,4 @@ export default {
 ul, li{
 	list-style: none;
 }
-.site-wraper{
-
-}
-
 </style>

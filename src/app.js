@@ -17,6 +17,7 @@ const cors = require('kcors');
 //     flush: require('zlib').Z_SYNC_FLUSH
 // }));
 app.keys = ['some secret hurr'];
+app.use(cors());
 
 // app.use(adapt(require('koa-session')({
 //     maxAge: 24 * 60 * 60 * 1000 // One Day
@@ -28,7 +29,6 @@ app.use(require('koa-bodyparser')({
 
 app.use(require('koa-static')(__dirname + '/public/vue/dist'));
 // app.use(require('koa-static')(__dirname + '/public/react/dist'));
-app.use(cors());
 
 // const mount = require('koa-mount');
 // app.use(mount('/public', require('koa-static')('public')));

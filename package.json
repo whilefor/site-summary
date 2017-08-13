@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "chrome-remote-interface": "^0.22.0",
-    "html-selector": "0.0.7",
+    "html-selector": "0.0.8",
     "jsdom": "^11.0.0",
     "kcors": "^2.2.1",
     "koa": "^2.2.0",
