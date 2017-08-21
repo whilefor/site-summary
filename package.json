@@ -4,8 +4,10 @@
   "description": "Site Summary",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js"
+    "start": "npm run server&npm run client",
+    "server": "node src/app.js",
+    "client": "cd ./src/public/vue&&npm install&&npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

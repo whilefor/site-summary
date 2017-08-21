@@ -1,17 +1,11 @@
 # Site Summary
 
-## config
+## Config
 
 `config.json` : an array of [html-selector](https://github.com/whilefor/html-selector) config object.
 
-## start server
+## Start
 
 ```
 npm start
-```
-
-## start client
-
-```
-cd ./public/vue&&npm install&&npm start
 ```
