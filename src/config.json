@@ -1,7 +1,7 @@
 [{
 	"name": "web前端 - 伯乐在线",
 	"url": "http://web.jobbole.com/all-posts/",
-	"rootSelector": ".post",
+	"selector": ".post",
 	"limit": 4,
 	"data": {
 		"title": {
@@ -22,7 +22,7 @@
 },{
 	"name": "web前端 - 伯乐在线2",
 	"url": "http://web.jobbole.com/all-posts",
-	"rootSelector": ".post",
+	"selector": ".post",
 	"limit": 4,
 	"data": {
 		"title": {
